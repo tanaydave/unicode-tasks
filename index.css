@@ -1,0 +1,18 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#main{
+    padding:5rem;
+    display: flex;
+    justify-content: center;
+}
+table{
+    border:0.3rem solid red;
+    border-collapse: collapse;
+}
+th{
+    border:0.1rem solid black;
+    border-collapse: collapse;
+    padding:2rem;
+}

@@ -10,10 +10,21 @@ const options = {
 async function worldData (){
     let response = await fetch(('https://corona-virus-world-and-india-data.p.rapidapi.com/api'),options);
     let data = await response.json();
-    return data;
+    return data.countries_stat;
 }
 worldData()
 .then((data)=>{
-    console.log(data);
+    console.log(data[0].country_name);
+	var output="";
+	data.forEach((data) => {
+		console.log(data.country_name);
+		output+=
+		`<tr>
+		<td>${data.country_name}</td>
+		</tr>`
+	;
+})
+let headings = document.getElementById('headings')
+headings.insertAdjacentHTML("afterend",output)
 })
 
