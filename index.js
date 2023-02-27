@@ -7,24 +7,59 @@ const options = {
 };
 
 
-async function worldData (){
-    let response = await fetch(('https://corona-virus-world-and-india-data.p.rapidapi.com/api'),options);
-    let data = await response.json();
-    return data.countries_stat;
+async function worldData() {
+	let response = await fetch(('https://corona-virus-world-and-india-data.p.rapidapi.com/api'), options);
+	let data = await response.json();
+	return data.countries_stat;
 }
 worldData()
-.then((data)=>{
-    console.log(data[0].country_name);
-	var output="";
-	data.forEach((data) => {
-		console.log(data.country_name);
-		output+=
-		`<tr>
+	.then((data) => {
+
+		console.table(data);
+		var output = "";
+
+		data.forEach((data) => {
+			// console.log(data);
+			output +=
+				`<tr>
 		<td>${data.country_name}</td>
+		<td>${data.cases}</td>
+		<td>${data.deaths}</td>
+		<td>${data.total_recovered}</td>
 		</tr>`
-	;
-})
-let headings = document.getElementById('headings')
-headings.insertAdjacentHTML("afterend",output)
-})
+				;
+		})
+		print(data);
+		let headings = document.getElementById('headings')
+		headings.insertAdjacentHTML("afterend", output)
+		let country = document.getElementById('country')
+		country.addEventListener("click", () => {
+			data.sort((x, y) => {
+				let a = x.country_name.toUpperCase(),
+					b = y.country_name.toUpperCase();
+				return a == b ? 0 : a > b ? 1 : -1;
+
+
+			})
+			console.table(data);})
+			// data.sort();
+			
+		// 	var output = "";
+
+		// 	data.forEach((data) => {
+		// 		// console.log(data);
+		// 		output +=
+		// 			`<tr>
+		// <td>${data.country_name}</td>
+		// <td>${data.cases}</td>
+		// <td>${data.deaths}</td>
+		// <td>${data.total_recovered}</td>
+		// </tr>`
+
+		// 	})
+		// 	headings.insertAdjacentHTML("afterend", output)
+		}
+		
+	)
+
 
