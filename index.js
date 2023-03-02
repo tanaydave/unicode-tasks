@@ -27,11 +27,13 @@ worldData()
 		<td>${data.deaths}</td>
 		<td>${data.total_recovered}</td>
 		</tr>`
-				;
+				
 		})
-		print(data);
+		
 		let headings = document.getElementById('headings')
 		headings.insertAdjacentHTML("afterend", output)
+
+		
 		let country = document.getElementById('country')
 		country.addEventListener("click", () => {
 			data.sort((x, y) => {
@@ -41,7 +43,21 @@ worldData()
 
 
 			})
-			console.table(data);})
+			console.table(data)
+			var output2 = ""
+			data.forEach((data) => {
+				
+						output2 +=
+							`<tr>
+				<td>${data.country_name}</td>
+				<td>${data.cases}</td>
+				<td>${data.deaths}</td>
+				<td>${data.total_recovered}</td>
+				</tr>`
+		
+					})
+					headings.insertAdjacentHTML("afterend", output2)
+		})
 			// data.sort();
 			
 		// 	var output = "";
